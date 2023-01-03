@@ -1,0 +1,1 @@
+# sosotable-food-mbti
