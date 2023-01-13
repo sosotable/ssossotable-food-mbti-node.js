@@ -2,12 +2,14 @@
 <html>
   <head>
     <%- include('head.ejs', {title: title}) %>
+    <link href="/stylesheets/index.css" rel="stylesheet">
   </head>
   <body>
   <%- include('header.ejs') %>
   <main>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% for(let i = 0; i < contents.length; i++) {%>
+      <%- include('content_card.ejs', {title: contents[i].title, desc: contents[i].desc, link: contents[i].link}) %>
+    <%}%>
   </main>
   <%- include('footer.ejs') %>
   </body>

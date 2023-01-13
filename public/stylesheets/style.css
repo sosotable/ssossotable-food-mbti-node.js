@@ -1,19 +1,73 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@media only screen and (max-width : 768px) {
 
-a {
-  color: #00B7FF;
 }
 .brand-box {
-  width: 32px;
-  height: 32px;
-  border-radius: 30%;
+  width: 36px;
+  height: 36px;
+  border-radius: 20%;
   overflow: hidden;
+  margin: 0 0 0 15px;
 }
 .brand-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@font-face { /* 애플산돌고딕 폰트 적용 */
+  font-family: "Jua";
+  src: url("/font/BMJUA_ttf.ttf") format("truetype");
+  font-weight: normal;
+}
+html, body, main {
+  height: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  font-family: Jua;
+  font-weight: 100;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar, main::-webkit-scrollbar {
+  display: none;
+}
+
+footer {
+  margin: 0!important;
+}
+.btn:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 1.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.btn {
+  color: black;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #ffdf8f;
+  --bs-btn-border-color:#ffdf8f;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-color: black;
+  --bs-btn-hover-bg: #fcce5b;
+  --bs-btn-hover-border-color: #fcce5b;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #fce6ae;
+  --bs-btn-active-border-color: #fce6ae;
+  --bs-btn-active-color: black;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
 }
