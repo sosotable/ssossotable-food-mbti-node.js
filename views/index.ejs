@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <%- include('head.ejs', {title: title}) %>
     <link href="/stylesheets/index.css" rel="stylesheet">
+    <script>
+      async function login() {
+        // MARK: axios를 통한 post요청 처리
+        await axios.post( '/main', { id: document.getElementById('id').value } )
+        location.href = '/main'
+      }
+    </script>
   </head>
   <body>
-  <%- include('header.ejs') %>
-  <main>
-    <% for(let i = 0; i < contents.length; i++) {%>
-      <%- include('content_card.ejs', {title: contents[i].title, desc: contents[i].desc, link: contents[i].link}) %>
-    <%}%>
+  <main class="d-flex flex-column">
+    <div class="index-box">
+      <img src="/images/logo.png" alt="소소식탁" class="index-img">
+    </div>
+    <div class="input-group mb-3">
+      <input id="id" type="text" class="form-control" placeholder="닉네임 입력">
+      <input type="button" class="btn btn-outline-secondary" onclick="login()" value="입력"/>
+    </div>
   </main>
   <%- include('footer.ejs') %>
   </body>
