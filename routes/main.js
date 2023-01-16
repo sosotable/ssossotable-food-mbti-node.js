@@ -15,13 +15,12 @@ const cookieConfig = {
 router.route('/')
     // MARK: GET 요청일 시 index에서 라우팅되는 자동로그인
     .get( (req, res, next) => {
-        req.cookies.id === undefined ? res.redirect('/') : res.render('main', { title: '소소식탁', contents: contents })
+        req.session.id === undefined ? res.redirect('/') : res.render('main', { title: '소소식탁', contents: contents })
     })
     // MARK: POST 요청일 시 로그인 정보를 담은 최초 로그인을 의미함
     .post((req, res, next) => {
-        res.cookie('id', crypto.createHash('sha512').update(req.body.id).digest('base64'), cookieConfig)
-        res.writeHead(200)
-        res.end('response 200')
+        req.session.id = crypto.createHash('sha512').update(req.body.id).digest('base64')
+        res.end(200, 'response 200')
     });
 
 module.exports = router;

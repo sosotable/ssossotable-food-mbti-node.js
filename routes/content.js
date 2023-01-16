@@ -16,7 +16,7 @@ router.get('/:content', (req, res, next) => {
         contentHeaderTitle: contentHeader.contentHeaderTitle,
         contentHeaderDesc: contentHeader.contentHeaderDesc
     }
-    req.cookies.id === undefined ? res.redirect('/') :  res.render('content', renderParams );
+    req.session.id === undefined ? res.redirect(202, '/') :  res.render('content', renderParams );
 });
 
 module.exports = router;
