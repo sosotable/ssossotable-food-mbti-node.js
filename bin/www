@@ -7,7 +7,7 @@
 // 환경변수 사용
 require("dotenv").config();
 
-const app = require('../app');
+const app = require('../dist/app');
 const debug = require('debug')('ssossotable-food-mbti:server');
 const http = require('http');
 
