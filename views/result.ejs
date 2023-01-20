@@ -7,6 +7,16 @@
 <body>
 <%- include('header.ejs') %>
 <main>
+    <h1>결과!</h1>
+    <%if(path === 'mbti') { %>
+        <%- include(`./components/mbti.ejs`, {result: {image:1, title:'a', desc: 'aaaaa'}}) %>
+    <%}%>
+    <%if(path === 'average') { %>
+        <%- include(`./components/average.ejs`, {data: data}) %>
+    <%}%>
+    <%if(path === 'taste') { %>
+        <%- include(`./components/taste.ejs`, {data: data}) %>
+    <%}%>
 </main>
 <%- include('footer.ejs') %>
 </body>
