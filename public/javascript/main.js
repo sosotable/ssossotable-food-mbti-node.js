@@ -7,6 +7,8 @@ const q = document.querySelector('.qBox');
 
 const backBtn = document.querySelector('#back-btn')
 
+let contentType
+
 // MARK: qIdx 전역 지정에 따라 전역 범위에서 backBtn 이벤트 리스너 지정
 backBtn.addEventListener("click", () => {
     let children = document.querySelectorAll('.answerList');
@@ -89,6 +91,7 @@ function askAnswer() {
 }
 
 function start(point, type) {
+    contentType = type
     endPoint = parseInt(point)
     startPage.style.display = "none";
     qnaPage.style.display = "block";
@@ -135,7 +138,7 @@ function goResult() {
     const form = document.createElement('form')
     const input_value = document.createElement('input')
     // MARK: result 페이지로 result json을 담은 post요청을 보낼 것
-    form.action = '/result'
+    form.action = `/result/${contentType}`
     form.method = 'post'
     input_value.type = 'hidden'
     input_value.name = 'result'
