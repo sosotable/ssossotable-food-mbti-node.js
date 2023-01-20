@@ -1,6 +1,8 @@
 import { Response, Request, NextFunction } from "express";
 import { ErrorRequestHandler } from "./interface/ErrorRequestHandler";
 
+require("dotenv").config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -10,13 +12,13 @@ const logger = require('morgan');
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 
-const config = new (require('./config/db_info').db_info)('ssossotest')
+
 const options = {
-  host: config.host,
-  port: config.port,
-  user: config.user,
-  password: config.password,
-  database: config.database,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: 'ssossotest'
 };
 const sessionStore = new MySQLStore(options)
 
@@ -28,7 +30,7 @@ const resultRouter = require('./routes/result');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(process.env.BUILD_PATH, 'views'));
 app.set('view engine', 'ejs');
 
 /**MARK: session 설정 부분
@@ -50,7 +52,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(process.env.BUILD_PATH, 'public')));
 
 // MARK: 라우팅
 app.use('/', indexRouter);
