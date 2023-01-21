@@ -1,2 +1,3 @@
 export interface Database {
-    connection: any}
+  connection: any;
+}

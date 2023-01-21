@@ -1,4 +1,4 @@
 export interface ErrorRequestHandler {
-    message: any,
-    status: any
+  message: any;
+  status: any;
 }
