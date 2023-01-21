@@ -1,7 +1,12 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="/images/mbti/<%- result.image%>.png" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title"><%- result.title%></h5>
-        <p class="card-text"><%- result.desc%></p>
+<div class="card" style="width: 100%!important; text-align: center;">
+    <div class="card-header" style="background-color: transparent!important;"><h1>결과!</h1></div>
+    <div class="res-box">
+        <img class="res-img card-img-top" src="/images/mbti/<%- image%>.jpeg" alt="Card image cap">
     </div>
+
+    <div class="card-body">
+        <h3><p class="card-title">당신의 음식은 <%- title%>!</p></h3>
+        <p class="card-text"> <%- desc%></p>
+    </div>
+    <div class="card-footer" style="background-color: transparent!important;"><button class="btn"><a href="/main" style="color: black; text-decoration: none;">처음으로</a></button></div>
 </div>

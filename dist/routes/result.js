@@ -20,7 +20,7 @@ router
   .post((req, res) => {
     const path = req.params.path;
     const result = JSON.parse(req.body.result.replace("'", ""));
-    for (let i = 0; i++; i < result.length) {
+    for (let i = 0; i < result.length; i++) {
       if (result[i].type == "EI") {
         eipoint += result[i].score;
       } else if (result[i].type == "SN") {
@@ -40,7 +40,7 @@ router
       : res.render("result", {
           title: "소소식탁 - 결과",
           path: path,
-          result: { title: mbtiResult, desc: descResult },
+          result: { image: descResult, title: mbtiResult, desc: descResult },
         });
   });
 function defpoint() {
