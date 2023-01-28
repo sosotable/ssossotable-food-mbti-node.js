@@ -57,7 +57,8 @@ router
      */
     else {
       for (let i = 0; i < result.length; i++) {
-        score = result[i].score;
+        // FIXED: index out of range 문제였어요 score의 범위가 1부터 시작하는데 배열은 0부터 시작이니 1만 빼 주면 돼요
+        score = result[i].score - 1;
         resultTitle[i] = contentModels.taste[i].q;
         resultDesc[i] = contentModels.taste[i].a[score].answer;
       }
