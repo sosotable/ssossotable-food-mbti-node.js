@@ -27,7 +27,7 @@ module.exports = (() => {
         desc: "ISFJ",
       },
       {
-        name: "떡볶아",
+        name: "떡볶이",
         desc: "ENFJ",
       },
       {

@@ -1,5 +1,6 @@
 import { RequestExtension } from "../interface/RequestExtension";
 import { Response } from "express";
+import { resourceUsage } from "process";
 
 /** 결과 화면 **/
 // @ts-ignore
@@ -8,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 const resultModels = require("../model/result");
+const contentModels = require("../model/content");
 
 let eipoint = 0;
 let snpoint = 0;
@@ -15,6 +17,9 @@ let ftpoint = 0;
 let pjpoint = 0;
 let mbti;
 let point;
+let resultTitle: any[] = [];
+let resultDesc: any[] = [];
+let score;
 
 router
   .route("/:path")
@@ -37,18 +42,34 @@ router
       }
     }
 
-    point = defpoint();
-    mbti = sortResult(point);
+    // mbti 결과 값
+    if (eipoint && snpoint && ftpoint && pjpoint) {
+      point = defpoint();
+      mbti = sortResult(point);
+      resultTitle[0] = resultModels.mbtiRestList[mbti].name;
+      resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
+    }
 
-    let mbtiResult = resultModels.mbtiRestList[mbti].name;
-    let descResult = resultModels.mbtiRestList[mbti].desc;
+    // taste 결과 값
+    /**
+     * ???: error
+     * Cannot read properties of undefined (reading 'answer')
+     */
+    else {
+      for (let i = 0; i < result.length; i++) {
+        // FIXED: index out of range 문제였어요 score의 범위가 1부터 시작하는데 배열은 0부터 시작이니 1만 빼 주면 돼요
+        score = result[i].score - 1;
+        resultTitle[i] = contentModels.taste[i].q;
+        resultDesc[i] = contentModels.taste[i].a[score].answer;
+      }
+    }
 
     req.session.user_id === undefined
       ? res.redirect("/")
       : res.render("result", {
           title: "소소식탁 - 결과",
           path: path,
-          result: { image: descResult, title: mbtiResult, desc: descResult },
+          result: { image: resultDesc, title: resultTitle, desc: resultDesc },
         });
   });
 
@@ -107,4 +128,5 @@ function sortResult(point: String) {
   //console.log(num)
   return num;
 }
+
 module.exports = router;

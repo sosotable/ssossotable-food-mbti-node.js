@@ -6,12 +6,16 @@ const express = require("express");
 // @ts-ignore
 const router = express.Router();
 const resultModels = require("../model/result");
+const contentModels = require("../model/content");
 let eipoint = 0;
 let snpoint = 0;
 let ftpoint = 0;
 let pjpoint = 0;
 let mbti;
 let point;
+let resultTitle = [];
+let resultDesc = [];
+let score;
 router
   .route("/:path")
   .get((req, res) => {
@@ -31,16 +35,31 @@ router
         pjpoint += result[i].score;
       }
     }
-    point = defpoint();
-    mbti = sortResult(point);
-    let mbtiResult = resultModels.mbtiRestList[mbti].name;
-    let descResult = resultModels.mbtiRestList[mbti].desc;
+    // mbti 결과 값
+    if (eipoint && snpoint && ftpoint && pjpoint) {
+      point = defpoint();
+      mbti = sortResult(point);
+      resultTitle[0] = resultModels.mbtiRestList[mbti].name;
+      resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
+    }
+    // taste 결과 값
+    /**
+     * ???: error
+     * Cannot read properties of undefined (reading 'answer')
+     */
+    else {
+      for (let i = 0; i < result.length; i++) {
+        score = result[i].score;
+        resultTitle[i] = contentModels.taste[i].q;
+        resultDesc[i] = contentModels.taste[i].a[score].answer;
+      }
+    }
     req.session.user_id === undefined
       ? res.redirect("/")
       : res.render("result", {
           title: "소소식탁 - 결과",
           path: path,
-          result: { image: descResult, title: mbtiResult, desc: descResult },
+          result: { image: resultDesc, title: resultTitle, desc: resultDesc },
         });
   });
 function defpoint() {
