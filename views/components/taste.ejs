@@ -1,0 +1,21 @@
+<div class="card" style="width: 100%!important; text-align: center;">
+    <div class="card-header" style="background-color: transparent!important;"><h1>결과!</h1></div>
+    <div class="res-box">
+        <img class="res-img card-img-top" src="/images/tastes/title.jpg" alt="Card image cap">
+    </div>
+
+    <ul class="list-group list-group-flush">
+        <% for (let i = 0; i < result.result.length; i++){
+            let q = title[i];
+            let a = desc[i]; %>
+            <li class="list-group-item"> 
+                <div class="card-body">
+                    <h3><p class="card-title">  <%- q%>!</p></h3>
+                    <p class="card-text"> <%- a%></p>
+                </div>
+            </li>
+        <% } %>
+
+      </ul>
+    <div class="card-footer" style="background-color: transparent!important;"><button class="btn"><a href="/main" style="color: black; text-decoration: none;">처음으로</a></button></div>
+</div>

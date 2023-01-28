@@ -24,10 +24,10 @@
         <%- include(`./components/mbti.ejs`, { image: result.image, title: result.title, desc: result.desc }) %>
     <%}%>
     <%if(path === 'average') { %>
-        <%- include(`./components/average.ejs`, {data: data}) %>
+        <%- include(`./components/average.ejs`, {title: result.title, desc: result.desc}) %>
     <%}%>
     <%if(path === 'taste') { %>
-        <%- include(`./components/taste.ejs`, {data: data}) %>
+        <%- include(`./components/taste.ejs`, {title: result.title, desc: result.desc}) %>
     <%}%>
 </main>
 <%- include('footer.ejs') %>
