@@ -57,9 +57,6 @@ function addAnswer(aIdx) {
     },
     false
   );
-  /** LEGECY:
-   * 서버사이드에서 처리하도록 하세요
-   * */
 }
 
 /** ADDED: 주관식 답변이 요구되는 경우 input form을 제작하여 사용

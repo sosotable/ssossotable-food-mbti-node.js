@@ -5,8 +5,7 @@
     </div>
 
     <ul class="list-group list-group-flush">
-        <%#FIXED: 오타 %>
-        <% for (let i = 0; i < result.length; i++){
+        <% for (let i = 0; i < title.length; i++){
             let q = title[i];
             let a = desc[i]; %>
             <li class="list-group-item"> 
@@ -16,7 +15,6 @@
                 </div>
             </li>
         <% } %>
-
       </ul>
     <div class="card-footer" style="background-color: transparent!important;"><button class="btn"><a href="/main" style="color: black; text-decoration: none;">처음으로</a></button></div>
 </div>

@@ -150,7 +150,7 @@ module.exports = (() => {
         result: -1,
       },
     ],
-    taste: [
+    tastes: [
       {
         q: "1. 즐겨 먹는 마라탕 맵기 단계, 엽떡 맵기 단계",
         a: [

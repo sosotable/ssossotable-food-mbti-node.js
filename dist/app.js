@@ -9,11 +9,11 @@ const logger = require("morgan");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const options = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: "ssossotest",
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: "ssossotest",
 };
 const sessionStore = new MySQLStore(options);
 const indexRouter = require("./routes/index");
@@ -27,16 +27,14 @@ app.set("view engine", "ejs");
 /**MARK: session 설정 부분
  * 항상 라우팅 앞에 두어야 기능함
  * **/
-app.use(
-  session({
+app.use(session({
     key: process.env.SESSION_KEY,
     secret: process.env.SESSION_SECRET,
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 10 * 60 * 1000 },
-  })
-);
+}));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,15 +47,15 @@ app.use("/content", contentRouter);
 app.use("/result", resultRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+    next(createError(404));
 });
 // error handler
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
 });
 module.exports = app;

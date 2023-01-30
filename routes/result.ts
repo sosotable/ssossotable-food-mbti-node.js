@@ -30,6 +30,8 @@ router
     const path = req.params.path;
     const result = JSON.parse(req.body.result.replace("'", ""));
 
+    console.log(result)
+
     for (let i = 0; i < result.length; i++) {
       if (result[i].type == "EI") {
         eipoint += result[i].score;
@@ -49,21 +51,14 @@ router
       resultTitle[0] = resultModels.mbtiRestList[mbti].name;
       resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
     }
-
-    // taste 결과 값
-    /**
-     * ???: error
-     * Cannot read properties of undefined (reading 'answer')
-     */
+    // tastes 결과 값
     else {
       for (let i = 0; i < result.length; i++) {
-        // FIXED: index out of range 문제였어요 score의 범위가 1부터 시작하는데 배열은 0부터 시작이니 1만 빼 주면 돼요
         score = result[i].score - 1;
-        resultTitle[i] = contentModels.taste[i].q;
-        resultDesc[i] = contentModels.taste[i].a[score].answer;
+        resultTitle[i] = contentModels.tastes[i].q;
+        resultDesc[i] = contentModels.tastes[i].a[score].answer;
       }
     }
-
     req.session.user_id === undefined
       ? res.redirect("/")
       : res.render("result", {

@@ -9,7 +9,7 @@ module.exports = (() => {
       {
         title: "음식 취향",
         desc: "나의 음식 취향을 기록하고 공유해보세요",
-        link: "/content/taste",
+        link: "/content/tastes",
       },
       {
         title: "평균",
