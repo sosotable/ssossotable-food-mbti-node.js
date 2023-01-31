@@ -30,35 +30,31 @@ router
     const path = req.params.path;
     const result = JSON.parse(req.body.result.replace("'", ""));
 
-    console.log(result)
-
-    for (let i = 0; i < result.length; i++) {
-      if (result[i].type == "EI") {
-        eipoint += result[i].score;
-      } else if (result[i].type == "SN") {
-        snpoint += result[i].score;
-      } else if (result[i].type == "FT") {
-        ftpoint += result[i].score;
-      } else if (result[i].type == "PJ") {
-        pjpoint += result[i].score;
+    if (path == "mbti") {
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].type == "EI") {
+          eipoint += result[i].score;
+        } else if (result[i].type == "SN") {
+          snpoint += result[i].score;
+        } else if (result[i].type == "FT") {
+          ftpoint += result[i].score;
+        } else if (result[i].type == "PJ") {
+          pjpoint += result[i].score;
+        }
       }
-    }
 
-    // mbti 결과 값
-    if (eipoint && snpoint && ftpoint && pjpoint) {
       point = defpoint();
       mbti = sortResult(point);
       resultTitle[0] = resultModels.mbtiRestList[mbti].name;
       resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
-    }
-    // tastes 결과 값
-    else {
+    } else {
       for (let i = 0; i < result.length; i++) {
         score = result[i].score - 1;
         resultTitle[i] = contentModels.tastes[i].q;
         resultDesc[i] = contentModels.tastes[i].a[score].answer;
       }
     }
+
     req.session.user_id === undefined
       ? res.redirect("/")
       : res.render("result", {

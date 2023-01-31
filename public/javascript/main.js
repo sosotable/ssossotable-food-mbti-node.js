@@ -105,11 +105,6 @@ function start(point, type) {
 
 function goNext() {
   if (qIdx === endPoint) {
-    /**LEGACY:
-     * 서버사이드에서 처리하도록 하세요
-     * point = defpoint();/**ADDED 결과페이지로 넘어갈 때 최종 point 정하는 코드
-     * grade = sortResult(point);/**ADDED 결과페이지로 넘어갈 때 최종 grade 정하는 코드
-     * */
     goResult();
   } else {
     q.innerHTML = qnaList[qIdx].q;
@@ -150,4 +145,11 @@ function goResult() {
 
   document.querySelector("main").appendChild(form);
   form.submit();
+
+  /**
+   * ADDED:
+   * result를 비워주지 않으면 test 두 개 이상 했을 시
+   * 결과 값 저장에 오류가 생겨서 추가함
+   */
+  result = [];
 }
