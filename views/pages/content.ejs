@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('head.ejs', {title: title}) %>
+    <%- include('../components/head.ejs', {title: title}) %>
     <link href="/stylesheets/content.css" rel="stylesheet">
     <script>
         const qnaList = JSON.parse(`<%- content %>`.replaceAll('&#34;', '\"'))
     </script>
 </head>
 <body>
-<%- include('header.ejs') %>
+<%- include('../components/header.ejs') %>
 <main>
     <div id="start-page" class="card w-75 mx-auto text-center">
         <div class="content-title-box">
@@ -28,7 +28,7 @@
         </div>
     </div>
 </main>
-<%- include('footer.ejs') %>
+<%- include('../components/footer.ejs') %>
 <script src="/javascript/main.js"></script>
 </body>
 </html>

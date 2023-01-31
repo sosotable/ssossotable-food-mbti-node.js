@@ -21,47 +21,114 @@ let resultTitle: any[] = [];
 let resultDesc: any[] = [];
 let score;
 
+const DAO = require("../libs/dao/DAO");
+let friendResult: {} = [];
 router
   .route("/:path")
   .get((req: RequestExtension, res: Response) => {
     res.redirect(202, "/");
   })
-  .post((req: RequestExtension, res: Response) => {
+  .post(async (req: RequestExtension, res: Response) => {
     const path = req.params.path;
     const result = JSON.parse(req.body.result.replace("'", ""));
-
-    if (path == "mbti") {
-      for (let i = 0; i < result.length; i++) {
-        if (result[i].type == "EI") {
-          eipoint += result[i].score;
-        } else if (result[i].type == "SN") {
-          snpoint += result[i].score;
-        } else if (result[i].type == "FT") {
-          ftpoint += result[i].score;
-        } else if (result[i].type == "PJ") {
-          pjpoint += result[i].score;
-        }
-      }
-
-      point = defpoint();
-      mbti = sortResult(point);
-      resultTitle[0] = resultModels.mbtiRestList[mbti].name;
-      resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
+    if (req.session.user_id === undefined) {
+      res.redirect("/");
     } else {
-      for (let i = 0; i < result.length; i++) {
-        score = result[i].score - 1;
-        resultTitle[i] = contentModels.tastes[i].q;
-        resultDesc[i] = contentModels.tastes[i].a[score].answer;
+      // MARK: dao insert 예외처리
+      try {
+        // MARK: 결과값 파싱
+        switch (path) {
+          case "mbti":
+            for (let i = 0; i < result.length; i++) {
+              switch (result[i].type) {
+                case "EI":
+                  eipoint += result[i].score;
+                  break;
+                case "SN":
+                  snpoint += result[i].score;
+                  break;
+                case "FT":
+                  ftpoint += result[i].score;
+                  break;
+                case "PJ":
+                  pjpoint += result[i].score;
+                  break;
+              }
+            }
+            point = defpoint();
+            mbti = sortResult(point);
+            resultTitle[0] = resultModels.mbtiRestList[mbti].name;
+            resultDesc[0] = resultModels.mbtiRestList[mbti].desc;
+            break;
+          case "tastes":
+            for (let i = 0; i < result.length; i++) {
+              score = result[i].score - 1;
+              resultTitle[i] = contentModels.tastes[i].q;
+              resultDesc[i] = contentModels.tastes[i].a[score].answer;
+            }
+            break;
+          //TODO: need to imple
+          case "average":
+            break;
+        }
+        // MARK: 이전에 평가한 기록이 있는지 확인함
+        const beforeTest = await DAO.select('*', path, `user_id = '${req.session.user_id}'`)
+
+        // MARK: 있는 경우 update로 새 기록을 씀
+        if(beforeTest.length > 0) {
+          await DAO.update(
+              path,
+              `result = '${JSON.stringify({
+                image: resultDesc,
+                title: resultTitle,
+                desc: resultDesc,
+              })}'`,
+              `user_id = '${req.session.user_id}'`)
+        } else {
+          // MARK: 없는 경우 DB에 결과값 insert
+          await DAO.insert(
+              path,
+              "user_id, result",
+              `'${req.session.user_id}','${JSON.stringify({
+                image: resultDesc,
+                title: resultTitle,
+                desc: resultDesc,
+              })}'`
+          );
+        }
+        // MARK: 친구 정보가 있는 경우 해당 데이터를 DB에서 받아옴
+        if (req.session.friend_id !== undefined) {
+          const friendJSON = JSON.parse(
+            (
+              await DAO.select("*", path, `user_id='${req.session.friend_id}'`)
+            )[0].result
+          );
+          friendResult = {
+            image: friendJSON.image,
+            title: friendJSON.title,
+            desc: friendJSON.desc,
+          };
+          res.render("pages/result", {
+            title: "소소식탁 - 결과",
+            path: path,
+            user_id: req.session.user_id,
+            result: { image: resultDesc, title: resultTitle, desc: resultDesc },
+            // MARK: 친구 정보가 있는 경우 해당 데이터까지 view에 전송
+            friendResult: friendResult,
+          });
+        } else {
+          res.render("pages/result", {
+            title: "소소식탁 - 결과",
+            path: path,
+            user_id: req.session.user_id,
+            result: { image: resultDesc, title: resultTitle, desc: resultDesc },
+            friendResult: "",
+          });
+        }
+      } catch (e) {
+        console.error(e);
       }
     }
-
-    req.session.user_id === undefined
-      ? res.redirect("/")
-      : res.render("result", {
-          title: "소소식탁 - 결과",
-          path: path,
-          result: { image: resultDesc, title: resultTitle, desc: resultDesc },
-        });
   });
 
 function defpoint() {

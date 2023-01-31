@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import { ErrorRequestHandler } from "./interface/ErrorRequestHandler";
 
+// MARK: 환경변수 사용
 require("dotenv").config();
 
 const createError = require("http-errors");
@@ -25,6 +26,7 @@ const indexRouter = require("./routes/index");
 const mainRouter = require("./routes/main");
 const contentRouter = require("./routes/content");
 const resultRouter = require("./routes/result");
+const shareRouter = require("./routes/share");
 
 const app = express();
 
@@ -42,7 +44,8 @@ app.use(
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 10 * 60 * 1000 },
+    // MARK: 세션 한 시간 유지
+    cookie: { maxAge: 60 * 60 * 1000 },
   })
 );
 
@@ -57,6 +60,7 @@ app.use("/", indexRouter);
 app.use("/main", mainRouter);
 app.use("/content", contentRouter);
 app.use("/result", resultRouter);
+app.use("/share", shareRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -64,7 +68,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 // error handler
-
 app.use(
   (
     err: ErrorRequestHandler,

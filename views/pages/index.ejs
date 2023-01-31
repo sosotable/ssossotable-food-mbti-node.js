@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../components/head.ejs', {title: title}) %>
+    <link href="/stylesheets/index.css" rel="stylesheet">
+    <script>
+      async function login() {
+        // MARK: axios를 통한 post요청 처리; 입력한 값을 세션에 user_id로 저장함
+        await axios.post( '/main', {
+          id: document.getElementById('id').value,
+        })
+        if('<%- path%>' === '') {
+          location.href = '/main'
+        }
+        else { // path paramater가 존재하는 경우 친구로부터 전달받음 => 해당 콘텐츠로 쿼리스트링 전송: 친구 아이디 세션에 저장
+          location.href = `/content/<%- path%>?user_id=<%- friend_id%>`
+        }
+
+      }
+    </script>
+  </head>
+  <body>
+  <main class="d-flex flex-column">
+    <div class="index-box">
+      <img src="/images/logo.png" alt="소소식탁" class="index-img">
+    </div>
+    <div class="input-group mb-3">
+      <input id="id" type="text" class="form-control" placeholder="닉네임 입력">
+      <input type="button" class="btn btn-outline-secondary" onclick="login()" value="입력"/>
+    </div>
+  </main>
+  <%- include('../components/footer.ejs') %>
+  </body>
+
+</html>

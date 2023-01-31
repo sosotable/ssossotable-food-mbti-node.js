@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <<%- include('../components/head.ejs', {title: title}) %>
+    <link href="/stylesheets/main.css" rel="stylesheet">
+</head>
+<body>
+<%- include('../components/header.ejs') %>
+<main>
+    <% for(let i = 0; i < contents.length; i++) {%>
+        <%- include('../components/content_card.ejs', {title: contents[i].title, desc: contents[i].desc, link: contents[i].link}) %>
+    <%}%>
+</main>
+<%- include('../components/footer.ejs') %>
+</body>
+
+</html>
