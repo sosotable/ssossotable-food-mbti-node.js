@@ -15,3 +15,12 @@
 ### Server
 
 <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=Amazon%20EC2&logoColor=white">
+
+## Flowchart
+
+### 1. frontent
+![frontend](https://user-images.githubusercontent.com/66404645/215968480-466c6fdd-60af-4771-952a-c4ecfc975421.svg)
+
+### 2. backend
+![backend](https://user-images.githubusercontent.com/66404645/215968643-44aff354-29d6-40ad-b689-5683ba78ff75.svg)
+
