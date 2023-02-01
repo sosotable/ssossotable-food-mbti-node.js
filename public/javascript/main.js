@@ -133,10 +133,14 @@ function goNext() {
  * 데이터를 서버로 보낸 후 서버사이드에서 처리하도록 해요
  */
 function goResult() {
+  let query = "";
+  if (Boolean(shared)) {
+    query = "?shared=true";
+  }
   const form = document.createElement("form");
   const input_value = document.createElement("input");
   // MARK: result 페이지로 result json을 담은 post요청을 보낼 것
-  form.action = `/result/${contentType}`;
+  form.action = `/result/${contentType}${query}`;
   form.method = "post";
   input_value.type = "hidden";
   input_value.name = "result";

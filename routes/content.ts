@@ -14,10 +14,6 @@ router.get(
     if (req.session.user_id === undefined) {
       res.redirect(202, "/");
     } else {
-      // MARK: 쿼리스트링이 존재하는 경우 친구 아이디를 세션에 저장
-      if(req.query.user_id !== undefined) {
-        req.session.friend_id = req.query.user_id;
-      }
       const contentName = req.params.content;
       const contentModel = contentModels[contentName];
       const contentHeader = contentHeaders[contentName];
@@ -40,6 +36,7 @@ router.get(
         contentHeaderImage: contentHeader.contentHeaderImage,
         contentHeaderTitle: contentHeader.contentHeaderTitle,
         contentHeaderDesc: contentHeader.contentHeaderDesc,
+        shared: req.query.shared,
       };
       res.render("pages/content", renderParams);
     }

@@ -26,8 +26,6 @@ const indexRouter = require("./routes/index");
 const mainRouter = require("./routes/main");
 const contentRouter = require("./routes/content");
 const resultRouter = require("./routes/result");
-const shareRouter = require("./routes/share");
-
 const app = express();
 
 // view engine setup
@@ -60,7 +58,6 @@ app.use("/", indexRouter);
 app.use("/main", mainRouter);
 app.use("/content", contentRouter);
 app.use("/result", resultRouter);
-app.use("/share", shareRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {

@@ -5,6 +5,7 @@
     <link href="/stylesheets/content.css" rel="stylesheet">
     <script>
         const qnaList = JSON.parse(`<%- content %>`.replaceAll('&#34;', '\"'))
+        const shared = Boolean('<%- shared%>')
     </script>
 </head>
 <body>
@@ -16,7 +17,7 @@
         </div>
         <h5 class="card-title"><%- contentHeaderTitle %></h5>
         <p class="card-text"><%- contentHeaderDesc %></p>
-        <input type="button" value="시작하기" class="btn btn-outline-secondary" onclick="start(`${qnaList.length}`,'<%= contentName %>')">
+        <input type="button" value="시작하기" class="btn btn-outline-secondary" onclick="start(`${qnaList.length}`,'<%= contentName %>', shared)">
     </div>
     <div id="qna-page" class="card w-75 mx-auto text-center"><div class="card-body gap-2">
             <div class="progress">
