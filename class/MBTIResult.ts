@@ -36,12 +36,7 @@ export default class MBTIResult extends Result {
   }
 
   defPoint(eipoint: number, snpoint: number, ftpoint: number, pjpoint: number) {
-    let EI, SN, FT, PJ;
-    eipoint < 5 ? (EI = "E") : (EI = "I");
-    snpoint < 5 ? (SN = "S") : (SN = "N");
-    ftpoint < 5 ? (FT = "F") : (FT = "T");
-    pjpoint < 5 ? (PJ = "P") : (PJ = "J");
-    return EI + SN + FT + PJ;
+    return (eipoint < 5 ? "E" : "I") + (snpoint < 5 ? "S" : "N") + (ftpoint < 5 ? "F" : "T") + (pjpoint < 5 ? "P" : "J");
   }
   calcMBTI(result: { [key: string]: number | string }[]) {
     for (let i = 0; i < result.length; i++) {
