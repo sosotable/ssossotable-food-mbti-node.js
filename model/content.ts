@@ -370,7 +370,25 @@ module.exports = (() => {
       },
       {
         q: "취향 선택",
+        a: [
+          {answer: "팥붕", score: 0},
+          {answer: "슈붕", score:1}
+        ]
       },
+      {
+        q: "취향 선택",
+        a: [
+          {answer: "물냉", score:0},
+          {answer: "비냉", score:1},
+        ]
+      },
+      {
+        q: "취향 선택",
+        a: [
+          {answer: "민초", score:0},
+          {answer: "반민초", score:1}
+        ]
+      }
     ],
   };
 })();
