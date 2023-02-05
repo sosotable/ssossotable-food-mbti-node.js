@@ -11,13 +11,28 @@ let contentType;
 
 // MARK: qIdx 전역 지정에 따라 전역 범위에서 backBtn 이벤트 리스너 지정
 backBtn.addEventListener("click", () => {
-  let children = document.querySelectorAll(".answerList");
-  for (let i = 0; i < children.length; i++) {
-    children[i].disabled = true;
-    children[i].style.display = "none";
+  /** FEAT**/
+  /** 퀴즈 첫 화면으로 가는 코드 **/
+  if (qIdx == 0) {
+    qnaPage.style.display = "none";
+    startPage.style.display = "block";
+
+    let children = document.querySelectorAll(".answerList");
+    for (let i = 0; i < children.length; i++) {
+      children[i].disabled = true;
+      children[i].style.display = "none";
+    }
   }
-  result.pop();
-  goNext(--qIdx);
+
+  else {
+    let children = document.querySelectorAll(".answerList");
+    for (let i = 0; i < children.length; i++) {
+      children[i].disabled = true;
+      children[i].style.display = "none";
+    }
+    result.pop();
+    goNext(--qIdx);
+  }
 });
 
 // MARK: 결과 post 요청을 보낼 body
