@@ -56,7 +56,7 @@
         <%} %>
     <%}%>
     <%if(path === 'average') { %>
-        <%- include(`../layout/average.ejs`, {title: result.title, desc: result.desc}) %>
+        <%- include(`../layout/average.ejs`, {title: result.title, desc: result.desc, titleDesc: '당신의 취향 결과에요'}) %>
         <%if(friendResult !== '') { %>
             <%- include(`../layout/average.ejs`, {title: friendResult.title, desc: friendResult.desc}) %>
         <%}%>
