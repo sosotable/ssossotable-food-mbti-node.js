@@ -63,8 +63,12 @@ router
               result.factory();
             }
             break;
-          //TODO: need to imple
+          //ADDED
           case "average":
+            result = new AverageResult(resultBody);
+            if (result instanceof AverageResult) {
+              result.factory();
+            }
             break;
         }
       } catch (e) {
@@ -91,8 +95,12 @@ router
               result.factory();
             }
             break;
-          //TODO: need to imple
+          //ADDED
           case "average":
+            result = new AverageResult(resultBody);
+            if (result instanceof AverageResult) {
+              result.factory();
+            }
             break;
         }
       } catch (e) {

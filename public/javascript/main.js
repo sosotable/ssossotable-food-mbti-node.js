@@ -22,9 +22,7 @@ backBtn.addEventListener("click", () => {
       children[i].disabled = true;
       children[i].style.display = "none";
     }
-  }
-
-  else {
+  } else {
     let children = document.querySelectorAll(".answerList");
     for (let i = 0; i < children.length; i++) {
       children[i].disabled = true;

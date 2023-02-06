@@ -1,0 +1,19 @@
+<div class="card" style="width: 100%!important; text-align: center;">
+    <div class="card-header" style="background-color: transparent!important;"><h3><%- titleDesc%></h3></div>
+    <div class="res-box">
+        <img class="res-img card-img-top" src="/images/average/title.jpg" alt="Card image cap">
+    </div>
+
+    <ul class="list-group list-group-flush">
+        <% for (let i = 0; i < title.length; i++){
+            let q = title[i];
+            let a = desc[i]; %>
+            <li class="list-group-item"> 
+                <div class="card-body">
+                    <h3><p class="card-title">  <%- q%>!</p></h3>
+                    <p class="card-text"> <%- a%></p>
+                </div>
+            </li>
+        <% } %>
+      </ul>
+</div>

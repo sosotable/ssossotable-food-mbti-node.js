@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig host="18.116.51.197" id="655d5bbd-b6fc-472a-a6cd-6e675d01a2c2" keyPath="C:\aws_key\soso.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
+      <sshConfig host="43.207.142.251" id="655d5bbd-b6fc-472a-a6cd-6e675d01a2c2" keyPath="C:\Code\SST_projects\sosotable-temp.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" useOpenSSHConfig="true" />
     </configs>
   </component>
 </project>
