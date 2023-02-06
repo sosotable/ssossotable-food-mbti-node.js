@@ -1,4 +1,4 @@
-# 소소식탁 푸비티아이(food MBTI) by Node.js
+# 소소테스트 by Node.js
 
 ## Created on
 
