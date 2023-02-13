@@ -87,13 +87,15 @@ router
               if (result instanceof MBTIResult_1.default) {
                 result.factory();
               }
+              // FIXED: break 구문 누락되어 있어서 추가하였어요
+              break;
             case "tastes":
               result = new TastesResult_1.default(resultBody, friendResult);
               if (result instanceof TastesResult_1.default) {
                 result.factory();
               }
               break;
-            //TODO: need to imple
+            //ADDED
             case "average":
               result = new AverageResult_1.default(resultBody);
               if (result instanceof AverageResult_1.default) {
@@ -125,7 +127,7 @@ router
                 result.factory();
               }
               break;
-            //TODO: need to imple
+            //ADDED
             case "average":
               result = new AverageResult_1.default(resultBody);
               if (result instanceof AverageResult_1.default) {
