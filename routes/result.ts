@@ -58,7 +58,7 @@ router
               result.factory();
             }
             // FIXED: break 구문 누락되어 있어서 추가하였어요
-            break
+            break;
           case "tastes":
             result = new TastesResult(resultBody, friendResult);
             if (result instanceof TastesResult) {
