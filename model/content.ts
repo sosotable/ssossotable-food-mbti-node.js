@@ -281,7 +281,7 @@ module.exports = (() => {
         ],
       },
       {
-        q: "떠볶이 떡",
+        q: "떡볶이 떡",
         a: [
           { answer: "밀떡", score: 1 },
           { answer: "쌀떡", score: 2 },
@@ -345,10 +345,24 @@ module.exports = (() => {
         q: "주량(소주기준) n병",
       },
       {
-        q: "맵기 단계 (1단계: 못먹음 2단계: 진라면 순한맛 3단계: 신라면 4단계: 불닭 5단계: 그 이상)",
+        q: "맵기 단계",
+        a: [
+          { answer: "못먹음", score: 1 },
+          { answer: "진라면 순한맛", score: 2 },
+          { answer: "신라면", score: 3 },
+          { answer: "불닭", score: 4 },
+          { answer: "그 이상", score: 5 },
+        ]
       },
       {
-        q: "신 거?? 단계(1단계: 못먹음 2단계: 새콤달콤 3단계: 아이셔 4단계: 패션후르츠 5단계: 레몬)",
+        q: "신 거??",
+        a: [
+          { answer: "못먹음", score: 1 },
+          { answer: "새콤달콤", score: 2 },
+          { answer: "아이셔", score: 3 },
+          { answer: "패션후르츠", score: 4 },
+          { answer: "레몬", score: 5 },
+        ]
       },
       {
         q: "하루에 커피 n잔",
