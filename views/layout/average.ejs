@@ -7,7 +7,13 @@
     <ul class="list-group list-group-flush">
         <% for (let i = 0; i < title.length; i++){
             let q = title[i];
-            let a = desc[i]; %>
+            <% if(qnaList[i] !== undefined) {
+                let a = desc[i];
+            <% } %>
+            <% else {
+                let a = desc[i];
+            <% } %>
+            
             <li class="list-group-item"> 
                 <div class="card-body">
                     <h3><p class="card-title">  <%- q%>!</p></h3>
