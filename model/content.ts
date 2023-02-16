@@ -343,44 +343,59 @@ module.exports = (() => {
     average: [
       {
         q: "주량(소주기준) n병",
+        min: 0,
+        max: 10,
+        step: 0.5,
       },
       {
         q: "맵기 단계",
         a: [
-          { answer: "못먹음", score: 1 },
-          { answer: "진라면 순한맛", score: 2 },
-          { answer: "신라면", score: 3 },
-          { answer: "불닭", score: 4 },
-          { answer: "그 이상", score: 5 },
-        ]
+          { answer: "1단계: 못먹음", score: 0 },
+          { answer: "2단계: 진라면 순한맛", score: 1 },
+          { answer: "3단계: 신라면", score: 2 },
+          { answer: "4단계: 불닭", score: 3 },
+          { answer: "5단계: 그 이상", score: 4 },
+        ],
       },
       {
-        q: "신 거??",
+        q: "신 거?? 단계",
         a: [
-          { answer: "못먹음", score: 1 },
-          { answer: "새콤달콤", score: 2 },
-          { answer: "아이셔", score: 3 },
-          { answer: "패션후르츠", score: 4 },
-          { answer: "레몬", score: 5 },
-        ]
+          { answer: "1단계: 못먹음", score: 0 },
+          { answer: "2단계: 새콤달콤", score: 1 },
+          { answer: "3단계: 아이셔", score: 2 },
+          { answer: "4단계: 패션후르츠", score: 3 },
+          { answer: "5단계: 레몬", score: 4 },
+        ],
       },
       {
         q: "하루에 커피 n잔",
-      },
-      {
-        q: "햄최몇",
+        min: 0,
+        max: 5,
+        step: 1,
       },
       {
         q: "피자 n조각(라지 기준)",
+        min: 0,
+        max: 10,
+        step: 1,
       },
       {
         q: "붕어빵 한자리에서 n개",
+        min: 0,
+        max: 20,
+        step: 1,
       },
       {
         q: "하루 n끼",
+        min: 0,
+        max: 5,
+        step: 1,
       },
       {
         q: "일주일에 외식/배달음식 n번",
+        min: 0,
+        max: 20,
+        step: 1,
       },
       {
         q: "취향 선택",
