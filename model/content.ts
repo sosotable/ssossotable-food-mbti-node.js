@@ -281,7 +281,7 @@ module.exports = (() => {
         ],
       },
       {
-        q: "떠볶이 떡",
+        q: "떡볶이 떡",
         a: [
           { answer: "밀떡", score: 1 },
           { answer: "쌀떡", score: 2 },
