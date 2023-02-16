@@ -72,20 +72,31 @@ function addAnswer(aIdx) {
   );
 }
 
-/** ADDED: 주관식 답변이 요구되는 경우 input form을 제작하여 사용
+/** ADDED: 주관식 답변이 요구되는 경우 input range를 제작하여 사용
  */
 function askAnswer() {
   const askForm = document.createElement("div");
   const inputForm = document.createElement("input");
+  const outputValue = document.createElement("div");
   const buttonDiv = document.createElement("div");
   const button = document.createElement("button");
   askForm.className = "input-group mb-3 answerList";
-  inputForm.type = "text";
-  inputForm.className = "form-control";
-  inputForm.placeholder = "입력";
-  buttonDiv.className = "input-group-append";
+  inputForm.type = "range";
+  inputForm.className = "form-range";
+  inputForm.min = qnaList[qIdx].min;
+  inputForm.max = qnaList[qIdx].max;
+  inputForm.step = qnaList[qIdx].step;
+  inputForm.value = "0";
+  outputValue.className = "output align-self-center";
+  outputValue.innerHTML = inputForm.value;
+  inputForm.addEventListener("input", (e) => {
+    outputValue.innerHTML = e.target.value;
+  });
+  buttonDiv.className =
+    "input-group-append justify-content-between d-flex flex-row w-100";
   button.className = "btn";
   button.innerText = "다음";
+  buttonDiv.appendChild(outputValue);
   buttonDiv.appendChild(button);
   askForm.appendChild(inputForm);
   askForm.appendChild(buttonDiv);
