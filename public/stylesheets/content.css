@@ -51,6 +51,9 @@
 #result-page {
   display: none;
 }
+.answerList {
+  margin: 10px;
+}
 /**
 * 결과페이지 상단 margin
  */
